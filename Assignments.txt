@@ -71,7 +71,7 @@ Deploy an app that:
 8. Horizontal & Vertical Scaling
 Implement:
 - HPA (CPU-based)
-- VPC (if supported)
+- VPA (if supported)
 - Load Testing to trigger scaling
 - Document scaling behaviour
 
