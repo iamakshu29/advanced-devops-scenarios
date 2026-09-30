@@ -1,0 +1,400 @@
+1. Multi Environment Terraform Architecture
+Scenario
+Design reuable terraform code to deploy separate Environment (dev, staging, prod).
+
+Requirements
+- Use Modules
+- Separate State files per Environment
+- Use remote backend (s3 + locking)
+- Use workspace or folder based strategy
+- Implement Tagging strategy
+- Implement env-specific variables
+
+
+2. High Available Web tier (Terraform)
+Provision:
+- 2 EC2 instance in different AZs
+- ALB
+- ASG
+CloudWatch Alarm for scaling
+
+Ensure zero downtime rolling update
+
+
+3. Secure VPC Architecture
+Design a VPC with:
+- Public and Private Subnets
+- NAT GW
+- Bastion Host 
+- Private EC2 instance
+- Restrictive SGs
+
+Document Traffic Flow
+
+
+4. Terraform State Recovery 
+Simulate:
+- Accidental deletion of Terraform state.
+- Recover Infrastructure using import.
+- Handle drift detection.
+
+Provide step-by-step documentation.
+
+
+5. Blue/Green Deployment (AWS + Kubernetes)
+Deploy an app using 
+- EKS
+- ALB
+- Two Version (v1, v2)
+- Gradual Traffic Switch
+
+Rollback on Failure.
+
+
+6. Github Actions CI/CD with Multi Stage Docker
+Pipeline must:
+- Run Tests
+- Scan with Trivy
+- Build Image
+- Push to ECR
+- Deploy to K8s
+- Fail on vulnerability Severity High+
+
+
+7. Self Healing Kubernetes App
+Deploy an app that:
+- Crashes randomly
+- Must Restart Automatically
+- Configure liveness & readiness probes
+- Show logs proving self-healing
+
+8. Horizontal & Vertical Scaling
+Implement:
+- HPA (CPU-based)
+- VPC (if supported)
+- Load Testing to trigger scaling
+- Document scaling behaviour
+
+
+9. Kubernetes RBAC Isolation
+Create:
+- Namespae per team
+- Role allowing read-only access
+- Rolebinding per user
+- Prevent Cross-namespace access
+
+
+10. Ingress with TLS
+Deploy:
+- NGINX Ingress controller
+- Let's Encrypt Certificate
+- Domain Routing
+- HTTPS redirection
+
+
+11. Centralized Logging Stack
+Deploy:
+- EFK (Elasticsearch, Fluentd, Kibana)
+- Collect logs from all pods
+- Filter logs by namespace
+- Create dashboard
+
+
+12. Prometheus Monitoring Stack
+Install
+- Prometheus, Grafana, Node Exporter, Custom Application Metrics
+
+Create CPU Alert Rule.
+
+
+13. Python S3 Sync Tool (Advanced)
+Enhance upload tool to:
+- Compare local vs S3 checksums
+- Resume Interrupted Uploads
+- Handle Multi-Threading
+- Auto-delete removed files.
+
+
+14. Disaster Recovery Simulation
+Simulate:
+- Node Failure
+- AZ Failure
+- etcd Corruption
+
+Recover cluster without downtime.
+
+
+15. Infrastructure Cost Optimization
+Analyze AWS usage and:
+- Identify idle EC2
+- Identify unattached volumes
+- Generate cost report
+- Propose Optimization strategy
+
+
+16. CI/CD with Manual Apporval Gate
+Implement Pipeline
+- Build
+- Security Scan
+- Deploy to staging
+- Manual Apporval
+- Deploy to Production
+
+
+17. Docker Security Hardening
+Harden Dockerfile:
+- Non-root user
+- Multi-stage builds
+- Minimal base images
+- Remove unnecessary packages
+
+18. Kubernetes Network Policies
+Implement
+- Deny all Traffic
+- Allow Frontend -> backend only
+- Block Backend -> frontend
+
+Verify using curl Tests
+
+
+19. Canary Deployment
+Implement:
+- 10% traffic to new Version
+- Monitor error rate
+- Promote Automatically
+
+
+20. Vault Integration
+Store secrets in Hashicorp Vault
+Inject Secrets into Pods Securely
+
+
+21. Terraform Module Registry
+Create resuable module:
+- EC2
+- SGs
+- EBS
+
+Publish Internally
+
+22. Kubernetes Statefule Application
+Deploy:
+- MySql StatefulSet
+- Persistent Storage
+- Stable Network Identity
+- Backup Mechanism
+
+
+23. GitOps with ArgoCD
+Setup:
+- Git repository for manifests
+- ArgoCD Sync
+- Automatic rollback on drift
+
+24. Auto-Rollback on Health Failure
+Configure:
+- Kubernetes Deployment
+- health probe
+- Automatic rollback if Failure
+
+25. Rate Limiting at Ingress
+Implement:
+- Request Throttling
+- IP-based rate limits
+- Return HTTP 429
+
+26. CI Pipeline Parallelization
+Optimize Pipeline:
+- Parallel test execution
+- Cache dependencies
+- Reduce runtime by 40%
+
+27. Infrastructure Drift detection
+Use:
+- Terraform Plan Automation
+- Scheduled Drift detection
+- Slack alert on drift
+
+
+28. Kubernetes Pod Security Standards (PSA)
+Implement:
+- Restricted Policy
+- Prevent Privileged Containers
+- Block hostPath mounts
+
+
+29. Rolling Restart with Zero downtime
+Simulate production restart:
+- maintain 100% uptime
+- Monitor availability
+
+
+30. Automated backup strategy
+Automate:
+- RDS snapshot
+- S3 versioning
+- Restore validation
+
+
+31. Container Image signing
+Implement:
+- Cosign signing
+- Verification before Deployment
+
+32. Infrastructure CI Validation
+Add:
+- Terraform Validate
+- tflint
+- tfsec
+- Fail pipeline on issues
+
+
+33. Kubernetes Cluster Upgrade
+Upgrade:
+- Minor Version Upgrade
+- Zero downtime
+- Rollback Plan
+
+
+34. Centralized Secret strategy
+Compare:
+- K8s Secrets
+- Vault
+- AWS Secrets Manager
+
+Implement One Securely
+
+
+35. Autoscaling based on custom Metrics
+Scaling Application using:
+- Requests per second
+- Prometheus Metrics
+
+
+36. Multi-Region Deployment
+Deploy app:
+- Two regions
+- Route53 failover Routing
+- health checks
+
+
+37. Blue/Green Infrastructure
+Provision:
+- Separate VPC per Environment
+- DNS cutover
+- Rollback Validation
+
+
+38. Network Troubleshooting Scenario
+Simulate:
+- Service Unreachable
+- Debug using;
+    - kubectl logs
+    - describe
+    - tcpdump
+    - network policy check
+
+
+39. Docker Image Optimization
+Reduce image by 60%
+Document Optimization Process
+
+
+40. Kubernetes Resource Optimization
+Limit:
+- CPU
+- Memory
+
+Prevent OOMKilled pods.
+
+
+41. Audit Logging
+Enable:
+- Kubernetes audit logs
+- Detect Unauthorized access
+
+
+42. Infrastructure Diagram & documentation
+Create:
+- Architecture Diagram
+- Network Flow Explaination
+- Security Flow Explaination
+
+43. Chaos Engineering Test
+Simulate:
+- Pod deletion
+- Node Failure
+- traffic spike
+
+Document system response
+
+
+44. CI/CD Secrets Management
+Prevents Secrets from:
+- Being Committed 
+- Being logged
+- Being leaked
+
+
+45. Application Observability
+Implement:
+- Distributed Tracing
+- Prometheus Metrics
+- Structured logs
+
+
+46. Custom Kubernetes Operator (Basic)
+Write Simple operator:
+- Watches CRUD
+- Create Pods Automatically
+
+
+47. Infrastructure Performance Benchmark
+Measure:
+- EC2 Performance
+- Network latency
+- Disk IO
+
+Compare instance Types
+
+
+48. Kubernetes Mult-Tenancy Model
+Design:
+- Namespace Isolation
+- Resource Quotas
+- Network Segmentation
+
+
+49. DevSecOps Integration
+Integrate:
+- SAST Scan
+- Dependency Scan
+- Container Scan
+- Infrastructure Scan
+
+
+50. End-to-End Production-Grade Project
+Build:
+- Terraform Infrastructure
+- Kubernetes Cluster
+- CI/CD Pipeline
+- Monitoring
+- Logging
+- Security
+- Auto Scaling
+- GitOps
+- Disaster Recovery Plan
+
+Document Everything as Production-Ready Solution.
+
+
+FINAL NOTE:
+These 50 Assignments represent:
+Real Production Problems
+Senior-Level Thinking
+Automation Mindset
+Security-First Architecture
+Scalability Design
+High Availability Planning
+
+Completing means you are no longer a beginner DevOps engineer - you are operating with production-level maturity.
