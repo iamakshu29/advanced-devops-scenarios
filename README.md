@@ -41,10 +41,10 @@ Assignment #50 is outside this index because the end-to-end project has separate
 
 ## Kubernetes workloads and scaling
 
-- #7 Self Healing Kubernetes App - DONE
+- #7 Self Healing Kubernetes App - `DONE`
 - #29 Rolling Restart with Zero downtime
-- #24 Auto-Rollback on Health Failure
-- #40 Kubernetes Resource Optimization
+- #24 Auto-Rollback on Health Failure - `DONE`
+- #40 Kubernetes Resource Optimization - `SKIPPED, very Common`
 - #8 Horizontal & Vertical Scaling
 - #35 Autoscaling based on custom Metrics
 - #22 Kubernetes Statefule Application

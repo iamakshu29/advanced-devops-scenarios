@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: stress-test-deploy
+  name: stress-test-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: stress-test-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: stress-test-deploy
+    spec:
+      containers:
+      - image: busybox
+        name: stress-test
+        command:
+        - sh
+        - -c
+        - |
+          while true
+          do
+            wget -qO- http://scaling-demo-deploy >/dev/null && echo "OK" || echo "FAILED"
+            sleep 0.1
+          done
+        resources: {}
+      restartPolicy: Always

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: scaling-demo-deploy
+  name: scaling-demo-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scaling-demo-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: scaling-demo-deploy
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+
+# kubectl create deployment scaling-demo-deploy --replicas=1 --image=nginx --dry-run=client -o yaml > deployment.yml

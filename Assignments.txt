@@ -68,9 +68,10 @@ Deploy an app that:
 - Configure liveness & readiness probes
 - Show logs proving self-healing
 
+
 8. Horizontal & Vertical Scaling
 Implement:
-- HPA (CPU-based)
+- HPA (CPU and Memory based)
 - VPA (if supported)
 - Load Testing to trigger scaling
 - Document scaling behaviour
@@ -196,6 +197,8 @@ Configure:
 - Kubernetes Deployment
 - health probe
 - Automatic rollback if Failure
+
+Goal: when you roll out a new version of an app and it starts failing its health checks (e.g. bad build, broken config), Kubernetes should detect the failure and automatically roll back to the last healthy version instead of leaving users on a broken deployment.
 
 25. Rate Limiting at Ingress
 Implement:

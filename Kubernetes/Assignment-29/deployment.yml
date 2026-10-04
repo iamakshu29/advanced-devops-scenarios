@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: rolling-restart-zero-downtime
-  name: rolling-restart-zero-downtime
+    app: rolling-restart-zero-downtime-deploy
+  name: rolling-restart-zero-downtime-deploy
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: rolling-restart-zero-downtime
+      app: rolling-restart-zero-downtime-deploy
   strategy:
     # Rolling update strategy ensures zero downtime during updates
     type: RollingUpdate
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: rolling-restart-zero-downtime
+        app: rolling-restart-zero-downtime-deploy
     spec:
       containers:
       - image: nginx:1.29.1

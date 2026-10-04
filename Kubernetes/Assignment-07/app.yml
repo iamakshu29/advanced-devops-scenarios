@@ -39,3 +39,5 @@ spec:
         initialDelaySeconds: 5
         periodSeconds: 10
   restartPolicy: Always
+
+# kubectl run random-crash --image=busybox --dry-run=client -o yaml > app.yml
