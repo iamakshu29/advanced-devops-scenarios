@@ -42,14 +42,14 @@ Assignment #50 is outside this index because the end-to-end project has separate
 ## Kubernetes workloads and scaling
 
 - #7 Self Healing Kubernetes App - `DONE`
-- #29 Rolling Restart with Zero downtime
+- #29 Rolling Restart with Zero downtime - `DONE`
 - #24 Auto-Rollback on Health Failure - `DONE`
-- #40 Kubernetes Resource Optimization - `SKIPPED, very Common`
-- #8 Horizontal & Vertical Scaling
+- #40 Kubernetes Resource Optimization - `SKIPPED, See Assignment-08 to check, how resources.limits are defined`
+- #8 Horizontal & Vertical Scaling - `DONE`
 - #35 Autoscaling based on custom Metrics
-- #22 Kubernetes Statefule Application
-- #19 Canary Deployment
-- #5 Blue/Green Deployment (AWS + Kubernetes)
+- #22 Kubernetes Stateful Application - `VolumeSnapShot Left, Also use secrets/configmap for mysql envs`
+- #19 Canary Deployment - 
+- #5 Blue/Green Deployment (AWS + Kubernetes) `a. DONE, b. LEFT`
 - #46 Custom Kubernetes Operator (Basic)
 
 ## Kubernetes networking, security and isolation
