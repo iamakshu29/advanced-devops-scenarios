@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: new-version-deploy
+  name: new-version-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: new-version-deploy
+  template:
+    metadata:
+      labels:
+        app: new-version-deploy
+    spec:
+      containers:
+      - image: nginx:1.26.1
+        name: nginx
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: nginx-volume
+        resources: {}
+      volumes:
+      - name: nginx-volume
+        configMap:
+          name: nginx-html-config
+          items:
+            - key: green-index.html
+              path: index.html
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: green-svc
+  name: green-svc
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: new-version-deploy
+  type: ClusterIP
