@@ -178,7 +178,7 @@ Create resuable module:
 
 Publish Internally
 
-22. Kubernetes Statefule Application
+22. Kubernetes Stateful Application
 Deploy:
 - MySql StatefulSet
 - Persistent Storage
