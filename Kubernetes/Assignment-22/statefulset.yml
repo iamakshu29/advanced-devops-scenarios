@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-app
+
+spec:
+  serviceName: mysql-svc
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: db-app
+
+  template:
+    metadata:
+      labels:
+        app: db-app
+
+    spec:
+      containers:
+        - name: db-app
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root"
+            - name: MYSQL_DATABASE
+              value: "mydb"
+          volumeMounts:
+            - name: my-storage
+              mountPath: /var/lib/mysql
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+
+  volumeClaimTemplates:
+    - metadata:
+        name: my-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
