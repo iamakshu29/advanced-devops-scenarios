@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: canary-version-deploy
+  name: canary-version-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: canary-version-deploy
+  template:
+    metadata:
+      labels:
+        app: canary-version-deploy
+    spec:
+      containers:
+      - image: nginx:1.26.1
+        name: nginx
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: nginx-volume
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources: {}
+      volumes:
+      - name: nginx-volume
+        configMap:
+          name: nginx-html-config
+          items:
+            - key: canary-index.html
+              path: index.html
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: canary-svc
+  name: canary-svc
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: canary-version-deploy
+  type: ClusterIP
