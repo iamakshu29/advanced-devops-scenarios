@@ -46,18 +46,18 @@ Assignment #50 is outside this index because the end-to-end project has separate
 - #24 Auto-Rollback on Health Failure - `DONE`
 - #40 Kubernetes Resource Optimization - `SKIPPED, See Assignment-08 to check, how resources.limits are defined`
 - #8 Horizontal & Vertical Scaling - `DONE`
-- #35 Autoscaling based on custom Metrics
+- #35 Autoscaling based on custom Metrics - `LEFT`
 - #22 Kubernetes Stateful Application - `VolumeSnapShot Left, Also use secrets/configmap for mysql envs`
-- #19 Canary Deployment - 
-- #5 Blue/Green Deployment (AWS + Kubernetes) `a. DONE, b. LEFT`
-- #46 Custom Kubernetes Operator (Basic)
+- #19 Canary Deployment - `DONE`
+- #5 Blue/Green Deployment (AWS + Kubernetes) - `DONE local K8s only`
+- #46 Custom Kubernetes Operator (Basic) - `SKIPPED`
 
 ## Kubernetes networking, security and isolation
 
-- #9 Kubernetes RBAC Isolation
+- #9 Kubernetes RBAC Isolation - `DONE`
 - #28 Kubernetes Pod Security Standards (PSA)
-- #18 Kubernetes Network Policies
-- #10 Ingress with TLS
+- #18 Kubernetes Network Policies - `PreReq DONE`
+- #10 Ingress with TLS - `PreReq DONE`
 - #25 Rate Limiting at Ingress
 - #34 Centralized Secret strategy
 - #20 Vault Integration

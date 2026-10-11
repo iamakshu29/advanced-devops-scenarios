@@ -152,8 +152,8 @@ Harden Dockerfile:
 18. Kubernetes Network Policies
 Implement
 - Deny all Traffic
-- Allow Frontend -> backend only
-- Block Backend -> frontend
+- Allow Frontend -> backend only and Backend -> DB only
+- Block Backend -> frontend and DB.
 
 Verify using curl Tests
 

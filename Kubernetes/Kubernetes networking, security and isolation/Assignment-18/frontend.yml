@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html-volume
+      volumes:
+      - name: html-volume
+        configMap:
+          name: nginx-configmap
+          items:
+            - key: frontend
+              path: index.html

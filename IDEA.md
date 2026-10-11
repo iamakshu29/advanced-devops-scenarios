@@ -1,0 +1,1 @@
+Create an Ingress to all the Kubernetes related assignemnt to access them at once. with different path and all/

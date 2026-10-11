@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: database
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        resources: {}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: html-volume
+      volumes:
+      - name: html-volume
+        configMap:
+          name: nginx-configmap
+          items:
+            - key: database
+              path: index.html
