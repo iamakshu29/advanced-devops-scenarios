@@ -11,5 +11,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: database-svc
+    app: database
   type: ClusterIP

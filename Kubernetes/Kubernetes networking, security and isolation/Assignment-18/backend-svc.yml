@@ -11,5 +11,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: backend-svc
+    app: backend
   type: ClusterIP
