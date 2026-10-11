@@ -9,7 +9,7 @@ Rollback on Failure.
 HOW TO -
 a. Simply change the service selector label to green from blue.
 b. (How Companies do is through argoCD) using Ingress - Create 2 separate Service, and point the ingress path to new version service.
-    So its like same logic as a, just one step higher up the network stack.
+    So its like same logic as point a, just one step higher up the network stack.
 
 
 NOTES

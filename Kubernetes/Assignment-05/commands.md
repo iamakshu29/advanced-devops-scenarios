@@ -10,4 +10,10 @@ kubectl create configmap nginx-html-config --from-file=blue-index.html=./blue/in
 # To verify the Blue Green, just update the selector in service.yml pointing from blue to green, while running the below pod side by side.
 kubectl run cluster-tester --image=curlimages/curl --restart=Never -i --tty --rm -- \
   sh -c "while true; do curl -s --connect-timeout 2 http://blue-green-svc; echo ''; sleep 2; done"
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+curl -H "Host: myapp.example.com" http://localhost:80
 ```
+
