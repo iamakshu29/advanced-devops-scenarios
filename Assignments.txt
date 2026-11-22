@@ -270,6 +270,8 @@ Compare:
 
 Implement One Securely
 
+Goal: secrets like passwords and API keys should never sit in Git, in the image, or in plain-text manifests. Compare the three options, pick one, and show an app in Kubernetes reading its secret from a central, access-controlled place, with proof that only the allowed app can read it.
+
 
 35. Autoscaling based on custom Metrics
 Scaling Application using:
