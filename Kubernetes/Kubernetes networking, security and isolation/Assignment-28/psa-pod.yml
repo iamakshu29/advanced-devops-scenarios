@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pod
+  name: pod
+  namespace: test
+spec:
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - args:
+    - test-pod
+    image: nginxinc/nginx-unprivileged:latest
+    name: pod
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

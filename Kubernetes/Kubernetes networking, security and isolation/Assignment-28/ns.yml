@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test
+  labels:
+    # Blocks completely insecure pods (HostNetwork, HostPID, etc.)
+    pod-security.kubernetes.io/enforce: "baseline"
+    pod-security.kubernetes.io/enforce-version: "latest"
+    
+    # Alerts the user on deployment if the pod isn't hardened (e.g., running as root)
+    pod-security.kubernetes.io/warn: "restricted"
+    pod-security.kubernetes.io/warn-version: "latest"
+    
+    # Logs a violation to the audit logs if the pod isn't hardened
+    pod-security.kubernetes.io/audit: "restricted"
+    pod-security.kubernetes.io/audit-version: "latest"
