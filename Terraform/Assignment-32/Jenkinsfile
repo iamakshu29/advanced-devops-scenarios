@@ -1,0 +1,44 @@
+pipeline{
+    agent{
+        label "node"
+    }
+    stages{
+        stage("Terraform Validate"){
+            steps{
+                sh '''
+                    echo "Validating Terraform Code for Syntax Errors"
+                    terrform validate
+                '''
+            }
+        }
+        stage("Terraform Format"){
+            steps{
+                sh '''
+                    echo "Formatting Terraform Code"
+                    terrform fmt
+                '''
+            }
+        }
+        stage("Terraform Vulnerability Check"){
+            sh '''
+                echo "Running Checkov command to fail terraform only on critical vulnerability"
+                checkov -d "E:/DevOps/Advacned Assignments Book DevOps Scenarios/Terraform/Assignment-02" \
+                    --framework terraform \
+                    --compact \
+                    --hard-fail-on CRITICAL \
+                    --output cli
+                '''
+        }
+    }
+    post{
+        always{
+            echo "Terrraform Check Run"
+        }
+        success{
+            echo "Pipeline executed successfully"
+        }
+        failure{
+            echo "Pipeline execution failed"
+        }
+    }
+}
