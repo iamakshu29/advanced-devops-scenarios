@@ -9,12 +9,12 @@ Assignment #50 is outside this index because the end-to-end project has separate
 ## Terraform and infrastructure as code
 
 - #21 Terraform Module Registry
-- #1 Multi Environment Terraform Architecture
-- #3 Secure VPC Architecture
-- #2 High Available Web tier (Terraform)
-- #32 Infrastructure CI Validation
-- #27 Infrastructure Drift detection
-- #4 Terraform State Recovery
+- #1 Multi Environment Terraform Architecture - `LEFT (tagging strats, env specific)`
+- #3 Secure VPC Architecture - `Code completed, Need to add more rules to make SG more restricted.`
+- #2 High Available Web tier - `Terraform Plan done, Applying left`
+- #32 Infrastructure CI Validation - `Pipeline Created, not verified`
+- #27 Infrastructure Drift detection - `need to add cronjob and some more code to Jenkinsfile`
+- #4 Terraform State Recovery - `DONE`
 - #37 Blue/Green Infrastructure
 
 ## AWS operations, resilience and cost
@@ -55,8 +55,8 @@ Assignment #50 is outside this index because the end-to-end project has separate
 ## Kubernetes networking, security and isolation
 
 - #9 Kubernetes RBAC Isolation - `DONE`
-- #28 Kubernetes Pod Security Standards (PSA)
-- #18 Kubernetes Network Policies - `PreReq DONE`
+- #28 Kubernetes Pod Security Standards (PSA) - `DONE`
+- #18 Kubernetes Network Policies - `DONE`
 - #10 Ingress with TLS - `PreReq DONE`
 - #25 Rate Limiting at Ingress
 - #34 Centralized Secret strategy

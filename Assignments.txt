@@ -246,6 +246,7 @@ Implement:
 - Cosign signing
 - Verification before Deployment
 
+
 32. Infrastructure CI Validation
 Add:
 - Terraform Validate
