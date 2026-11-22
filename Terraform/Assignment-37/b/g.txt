@@ -1,0 +1,5 @@
+Before:
+ALB Listener → Blue TG → Blue ASG
+
+After:
+ALB Listener → Green TG → Green ASG
