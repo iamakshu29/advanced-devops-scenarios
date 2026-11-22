@@ -1,0 +1,17 @@
+pipeline{
+    agent{
+        label "node"
+    }
+    cronjob
+    stages{
+        stage("Terraform Plan"){
+            steps{
+                sh '''
+                    echo "Scheduling Terraform Plan"
+                    terrform plan -out=tfplan
+                '''
+            }
+        }
+
+    }
+}
