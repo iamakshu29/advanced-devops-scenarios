@@ -1,0 +1,133 @@
+
+pipeline {
+    agent { label 'linux-agent-ec2' }
+
+    triggers {
+        cron('H 2 * * *')
+    }
+
+    environment {
+        TF_IN_AUTOMATION = 'true'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh '''
+                    terraform init -input=false
+                '''
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                script {
+
+                    // Run Terraform plan and capture its exit code
+                    def exitCode = sh(
+                        script: '''
+                            terraform plan \
+                                -input=false \
+                                -detailed-exitcode \
+                                -out=tfplan
+                        ''',
+                        returnStatus: true
+                    )
+
+                    if (exitCode == 0) {
+
+                        echo 'No infrastructure changes detected.'
+
+                        // Send notification
+                        // slackSend / emailext
+
+                        currentBuild.result = 'SUCCESS'
+                        env.PLAN_STATUS = 'NO_CHANGES'
+
+                    } else if (exitCode == 2) {
+
+                        echo 'Infrastructure changes detected.'
+
+                        env.PLAN_STATUS = 'CHANGES'
+
+                    } else {
+
+                        echo 'Terraform plan failed.'
+
+                        // Send failure notification
+                        // Investigate state, backend, credentials,
+                        // configuration and provider errors.
+
+                        error('Terraform plan failed. Manual investigation required.')
+                    }
+                }
+            }
+        }
+
+        stage('Review Plan') {
+            when {
+                expression { env.PLAN_STATUS == 'CHANGES' }
+            }
+
+            steps {
+                // Archive the exact plan generated earlier
+                archiveArtifacts artifacts: 'tfplan',
+                                 fingerprint: true
+
+                // Display plan for review
+                sh 'terraform show tfplan'
+
+                // Wait for manual approval
+                input(
+                    message: 'Review Terraform plan. Approve changes?',
+                    ok: 'Approve and Apply',
+                    submitter: 'terraform-approvers'
+                )
+            }
+        }
+
+        stage('Terraform Apply') {
+            when {
+                expression { env.PLAN_STATUS == 'CHANGES' }
+            }
+
+            steps {
+                // Apply the exact saved plan.
+                // Do not generate a new plan here.
+                sh '''
+                    terraform apply \
+                        -input=false \
+                        tfplan
+                '''
+
+                echo 'Terraform changes applied successfully.'
+
+                // Send success notification
+                // slackSend / emailext
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Terraform pipeline failed. Check Jenkins logs.'
+            // Send failure notification
+        }
+
+        aborted {
+            echo 'Pipeline aborted or approval rejected.'
+        }
+
+        cleanup {
+            // Remove sensitive plan artifact from workspace
+            sh 'rm -f tfplan || true'
+        }
+    }
+}
